@@ -1,0 +1,16 @@
+Q1.1 - Radix Sort
+
+Sort integers based on their most significant binary digit at each iteration, starting 
+with the most significant digit. Can then be called recursively on the subsequences
+to sort with respect to the next most significant binary digit.
+
+For each digit, the algorithm must perform a sorting of each digit, of complexity
+O(n). This must be done for all k binary digits, so the overall complexity is O(kn).
+
+
+Q2.1 - ArrayInsert
+
+Time complexity: At the worst case, the time complexity is O(n), when the element to
+insert is at the beginning of the array. In this case, n copy operations must occur
+(replacing A_n with A_n-1, A_n-1 with A_n-2 etc.)
+
