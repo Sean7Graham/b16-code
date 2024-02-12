@@ -2,8 +2,13 @@
     "tasks": [
         {
             "type": "cppbuild",
+<<<<<<< HEAD
             "label": "C/C++: g++-11 build active file",
             "command": "/usr/bin/g++-11",
+=======
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+>>>>>>> 5e2c881bfe43a185b7accf01adf697c880375fbb
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
