@@ -13,8 +13,7 @@ template <typename T> class StackEnhanced : public Stack<T>
     void clear()
     {
         // WRITE YOUR CODE HERE (Q3.1)
-        // Using Stack<T>::_head;
-        // _head = 0;
+        // assumed - StackEnhanced<T> *this = &stack;
         this->_head = 0;
     }
 };
@@ -23,6 +22,9 @@ template <typename T>
 StackEnhanced<T> &operator<<(StackEnhanced<T> &stack, const T &value)
 {
     // WRITE YOUR CODE HERE (Q3.1)
+
+    stack.push(value);
+    return stack;
 }
 
 #endif // __stack_enhanced___

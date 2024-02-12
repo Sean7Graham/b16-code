@@ -25,7 +25,9 @@ void apply_binary(Stack<T> &stack, B binary_operation)
 
 template <typename T> void plus(Stack<T> &stack)
 {
-    apply_binary(stack, std::plus<T>{});
+    apply_binary(stack, std::plus<T>{
+
+                        });
 }
 template <typename T> void minus(Stack<T> &stack)
 {
@@ -46,8 +48,7 @@ template <typename T> void negate(Stack<T> &stack)
 
 // Advanced interface (optional)
 
-template <typename T>
-Stack<T> &operator<<(Stack<T> &stack, const T &x)
+template <typename T> Stack<T> &operator<<(Stack<T> &stack, const T &x)
 {
     stack.push(x);
     return stack;
