@@ -5,60 +5,60 @@
 #include <cassert>
 #include <functional>
 
-template <typename T, typename B>
-void apply_unary(Stack<T> &stack, B unary_operation)
-{
-    auto arg = stack.top();
-    stack.pop();
-    stack.push(unary_operation(arg));
-}
+// WRITE YOUR CODE HERE
 
-template <typename T, typename B>
-void apply_binary(Stack<T> &stack, B binary_operation)
+// template <typename T1, typename T2>
+
+template <typename T1, typename T2>
+void apply_operation(Stack<T1> &stack, T2 operation)
 {
-    auto lhs = stack.top();
+    auto L = stack.top();
     stack.pop();
-    auto rhs = stack.top();
+    auto R = stack.top();
     stack.pop();
-    stack.push(binary_operation(lhs, rhs));
+    stack.push(operation(L, R));
 }
 
 template <typename T> void plus(Stack<T> &stack)
 {
-    apply_binary(stack, std::plus<T>{
-
-                        });
+    apply_operation(stack, std::plus<T>{});
 }
+
 template <typename T> void minus(Stack<T> &stack)
 {
-    apply_binary(stack, std::minus<T>{});
+    apply_operation(stack, std::minus<T>{});
 }
-template <typename T> void divides(Stack<T> &stack)
-{
-    apply_binary(stack, std::divides<T>{});
-}
+
 template <typename T> void multiplies(Stack<T> &stack)
 {
-    apply_binary(stack, std::multiplies<T>{});
+    apply_operation(stack, std::multiplies<T>{});
 }
+
+template <typename T> void divides(Stack<T> &stack)
+{
+    apply_operation(stack, std::divides<T>{});
+}
+
 template <typename T> void negate(Stack<T> &stack)
 {
-    apply_unary(stack, std::negate<T>{});
+    auto temp = stack.top();
+    stack.pop();
+    stack.push(std::negate<T>(temp));
 }
 
-// Advanced interface (optional)
-
-template <typename T> Stack<T> &operator<<(Stack<T> &stack, const T &x)
+// operator<< on types Stack<int> and int
+template <typename T> Stack<T> &operator<<(Stack<T> &stack, const T &val)
 {
-    stack.push(x);
+    stack.push(val);
     return stack;
 }
 
 template <typename T>
-Stack<T> &operator<<(Stack<T> &stack, void (*op)(Stack<T> &))
+Stack<T> &operator<<(Stack<T> &stack, void (*fn)(Stack<T> &))
 {
-    op(stack);
+    fn(stack);
     return stack;
 }
 
+// operator<< on types Stack<int> and fn
 #endif // __stack_rpn__
