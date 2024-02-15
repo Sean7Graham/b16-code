@@ -28,7 +28,7 @@ int main(int argc, char **argv)
         std::cout << "\nDequeued back ";
         for (int i = 0; i < 3; ++i) {
             std::cout << ' ' << queue.back();
-            queue.dequeue_front();
+            queue.dequeue_back();
         }
         std::cout << '\n';
     }

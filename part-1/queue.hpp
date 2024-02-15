@@ -2,6 +2,7 @@
 #define __queue__
 
 #include <cassert>
+#include <cstddef>
 #include <vector>
 
 template <typename T> class Queue
@@ -24,14 +25,7 @@ template <typename T> class Queue
     // Const-access the element at the front of the queue
     const T &front() const { return _storage[_head()]; }
 
-    // Remove the element at the front of the queue
-    void dequeue()
-    {
-        assert(_size >= 1);
-        _size--;
-    }
-
-    // Copy a value to the back of the queue
+    // Add a new element to the back of the queue by copying
     void enqueue(const T &value)
     {
         assert(_size < _storage.size());
@@ -44,6 +38,13 @@ template <typename T> class Queue
         }
     }
 
+    // Remove the element at the front of the queue
+    void dequeue()
+    {
+        assert(_size >= 1);
+        _size--;
+    }
+
     // Check if the queue is empty
     bool empty() const { return _size == 0; }
 
@@ -51,7 +52,7 @@ template <typename T> class Queue
     bool full() const { return _size == _storage.size(); }
 
   protected:
-    // Return the index of the element to the front of the queue.
+    // Return the index of the element at the front of the queue.
     size_t _head() const
     {
         assert(_size >= 1);
