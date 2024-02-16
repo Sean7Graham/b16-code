@@ -2,15 +2,19 @@
 #define __binary_tree_enhanced__
 
 #include <cassert>
+#include <memory>
 #include <vector>
 
 // A class representing a binary tree
 template <typename V> struct BinaryTreeEnhanced {
+
     V _value;
     std::unique_ptr<BinaryTreeEnhanced<V>> _left;
     std::unique_ptr<BinaryTreeEnhanced<V>> _right;
 
-    // WRITE YOUR CODE HERE
+    // WRITE YOUR CODE HERE (Q6)
+
+    BinaryTreeEnhanced<V> *_parent;
 
     friend V &value(BinaryTreeEnhanced *t) { return t->_value; }
     friend const V &value(const BinaryTreeEnhanced *t)
@@ -27,7 +31,8 @@ template <typename V> struct BinaryTreeEnhanced {
     }
     friend BinaryTreeEnhanced *parent(const BinaryTreeEnhanced *t)
     {
-        // WRITE YOUR CODE HERE
+        // WRITE YOUR CODE HERE (Q6)
+        return t->_parent;
     }
 };
 
@@ -38,7 +43,17 @@ make_binary_tree_enhanced(const V &value,
                           std::unique_ptr<BinaryTreeEnhanced<V>> l,
                           std::unique_ptr<BinaryTreeEnhanced<V>> r)
 {
-    // WRITE YOUR CODE HERE
+    // WRITE YOUR CODE HERE (Q6)
+
+    auto enhanced_tree = std::unique_ptr<BinaryTreeEnhanced<V>>{
+        new BinaryTreeEnhanced<V>{value, std::move(l), std::move(r)}};
+    if (left(enhanced_tree.get())) {
+        left(enhanced_tree.get()->_parent = enhanced_tree.get());
+    }
+    if (right(enhanced_tree.get())) {
+        right(enhanced_tree.get()->_parent = enhanced_tree.get());
+    }
+    return enhanced_tree;
 }
 
 #endif // __binary_tree_enhanced__
