@@ -18,3 +18,8 @@ int main(int argc, char **argv)
         print(list_to_vector(list));
     }
 }
+
+/*
+
+The worse case complexity
+*/
