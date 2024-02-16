@@ -39,10 +39,7 @@ template <typename T> class Dequeue : public Queue<T>
         this->_storage[this->_head()] = value;
         this->_size++;
 
-        // if(this->_position == this->_storage.size())
-        // {
-        //     this->_position == 0;
-        // }
+        
     }
 
     // Remove the element at the back of the queue
