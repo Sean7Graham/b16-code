@@ -26,7 +26,7 @@ template <typename T> class Queue
     const T &front() const { return _storage[_head()]; }
 
     // Add a new element to the back of the queue by copying
-    void enqueue(const T &value)
+    void enqueue_back(const T &value)
     {
         assert(_size < _storage.size());
         _storage[_position] = value;
@@ -39,7 +39,7 @@ template <typename T> class Queue
     }
 
     // Remove the element at the front of the queue
-    void dequeue()
+    void dequeue_front()
     {
         assert(_size >= 1);
         _size--;

@@ -13,17 +13,17 @@ int main(int argc, char **argv)
         std::cout << "Enqueued front";
         for (int i = 0; i < 3; ++i) {
             queue.enqueue_front(i);
-            std::cout << ' ' << i;
+            std::cout << ' ' << queue.front();
         }
         std::cout << "\nDequeued front";
         for (int i = 0; i < 3; ++i) {
             std::cout << ' ' << queue.front();
-            queue.dequeue();
+            queue.dequeue_front();
         }
         std::cout << "\nEnqueued back ";
         for (int i = 0; i < 3; ++i) {
-            queue.enqueue(i);
-            std::cout << ' ' << i;
+            queue.enqueue_back(i);
+            std::cout << ' ' << queue.back();
         }
         std::cout << "\nDequeued back ";
         for (int i = 0; i < 3; ++i) {
