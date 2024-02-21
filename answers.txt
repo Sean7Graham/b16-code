@@ -21,6 +21,11 @@ insert is at the beginning of the array. In this case, n copy operations must oc
 Q2.2 - part_1/array_delete_hpp
 
 
-Q3
+TODO Q4
 
-Q3.1
+TODO Q5
+
+
+Q6.3
+
+Q7.1

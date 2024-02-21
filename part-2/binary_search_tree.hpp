@@ -12,8 +12,8 @@ template <class T, typename V> T bst_search(const T &tree, const V &v)
 }
 
 template <typename V>
-std::unique_ptr<BinaryTree<V>>
-bst_insert(std::unique_ptr<BinaryTree<V>> tree, const V &v)
+std::unique_ptr<BinaryTree<V>> bst_insert(std::unique_ptr<BinaryTree<V>> tree,
+                                          const V &v)
 {
     if (!tree) return make_binary_tree(v, {}, {});
     if (v <= value(tree.get())) {
