@@ -90,7 +90,53 @@ O(nlog(n)), and so it more computatioanlly taxing than calling BuildHeap.
 Q7.3
 
 If the priority of an element in the heap is updated, the heap property of the binary tree can be
-restored by calling 
+restored by calling SiftUp on that node, with associated computational cost O(log(n)), althought this 
+requires knowledge of the location in the array of this value.
 
+
+Q8
+
+Q8.1
+
+Consider partitioning the set of all keys k, a finite set K (the universe) into m
+distinct subsets K_i such that h(k) = i for k in K_i. We have
+        
+                            sum_{m-1}{i=0} K_i = K
+
+Starting with the result given in the question,
+
+                            m * n <= |K|
+                                  <= |sum_{m-1}{i=0} K_i|
+                                  <= sum_{m-1}{i=0} |K_i|
+                                  <= m * |max_{i=0,..,m-1} K_i|
+                                  <= m * max_{i=0,..,m-1} |K_i|
+                            
+                                n <= max_{i=0,..,m-1} |K_i|
+
+And therefore the maximum subset of K as defined above contains at least n distinct keys.
+
+If all n keys hash to the same chain then, in the worst case, retrieving a key requires traversing
+the entire chain, invoking a cost of O(n).
+
+Q8.2
+
+A hash function can take input data of arbitrary size and produce a fixed-size string of 
+bytes - a hash value. The data can be represented as a number k, and a standard hash function 
+h(k) can then convert k into a number in the range 0,..,m-1 with m the size of the associated
+hash space.
+
+A design goal of such a hash function is to make the chances of a random collision between two keys
+extremely small. The larger the hash space, the lower the probability of two different files 
+having the same hasg value. It is important that a change to the file has a significant effect on 
+the hash value, so one can be highly confient that the file has not been modified if the hash values match.
+
+Q8.3
+
+h(c) = (sum_{q-1}{i=0} c_{q-1-i} 256^i) mod m
+     = (c_{q-1} + sum_{q-1}{i=1} c_{q-1-i} * 256^i) mod m
+     = [c_{q-1} + 256 * sum_{q-2}{i=0} c_{q-2-i} * 256^i] mod m
+     = [c_{q-1} + 256 * [sum_{q-2}{i=0} c_{q-2-i} * 256^i mod m]] mod m 
+     = [c_{q-1} + 256 * [c_{q-2} + 256 * [sum_{q-3}{i=0} c_{q-3-i} * 256^i mod m]]] mod m etc.
+     => [c_{q-1} + 256 * h(c_0 -> c_{q-1})] mod m
 
 
