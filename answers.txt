@@ -132,7 +132,7 @@ the hash value, so one can be highly confient that the file has not been modifie
 
 Q8.3
 
-h(c) = (sum_{q-1}{i=0} c_{q-1-i} 256^i) mod m
+h(c) = (sum_{q-1}{i=0} c_{q-1-i} * 256^i) mod m
      = (c_{q-1} + sum_{q-1}{i=1} c_{q-1-i} * 256^i) mod m
      = [c_{q-1} + 256 * sum_{q-2}{i=0} c_{q-2-i} * 256^i] mod m
      = [c_{q-1} + 256 * [sum_{q-2}{i=0} c_{q-2-i} * 256^i mod m]] mod m 
@@ -140,3 +140,33 @@ h(c) = (sum_{q-1}{i=0} c_{q-1-i} 256^i) mod m
      => [c_{q-1} + 256 * h(c_0 -> c_{q-1})] mod m
 
 
+implementation in part-3/q_8-3.cpp
+
+Q8.4
+
+Recalling from the previous question,
+
+h(c) = [sum_{q-1}{i=0} c_{q-1-i} * 256^i] mod m
+     = [sum_{q-1}{i=0} c_{q-1-i} * [256^i mod m]] mod m
+
+Noting 
+[256^i mod m] = [Product_{i} 256 mod m]
+              = Product_{i} [256 mod m]
+              = [256 mod m]^i
+ 
+If m=255: 
+              = [256 mod 255]^i
+              = 1^i
+              = 1
+
+
+     = [sum_{q-1}{i=0} c_{q-1-i}] mod m
+
+Therefore h(c) == h(<c_{i-1}c_{i-2}..c_0>) is always equal to [sum_{q-1}{i=0} c_{q-1-i}] mod m,
+regardless of the actual order of the entries c_0,..,c_{i-1} in the string. This is generally not 
+desirable.
+
+
+Q9
+
+Q9.1
